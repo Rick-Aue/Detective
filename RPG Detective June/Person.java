@@ -26,4 +26,13 @@ public class Person {
 	public void setGender(String gender) {
 		this.Gender = gender;
 	}
+	
+	private String text;
+	public String getText() {
+		return text;
+	}
+
+	public void setText(String text) {
+		this.text = text;
+	}
 }
