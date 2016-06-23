@@ -17,19 +17,6 @@ public class Suspect extends Person {
 		Appearance = appearance;
 	}
 	
-	/*
-	private QuestionAnswer QuestionAnswer[];
-	public QuestionAnswer[] getQuestionAnswer() {
-		return QuestionAnswer;
-	}
-
-	public void setQuestionAnswer(QuestionAnswer[] QuestionAnswer) {
-		this.QuestionAnswer = QuestionAnswer;
-	}
-	public QuestionAnswer getQuestionAnswer(int i){
-		return QuestionAnswer[i];
-	}
-	 */
 	private boolean NameKnown = false;
 	public boolean getNameKnown() {
 		return NameKnown;
@@ -109,4 +96,17 @@ public class Suspect extends Person {
 	public void setpersonAge(String personage) {
 		personAge = personage;
 	}
+	
+	private Suspect Answer[];
+	public Suspect[] getAnswer() {
+		return Answer;
+	}
+
+	public void setAnswer(Suspect[] Answer) {
+		this.Answer = Answer;
+	}
+	public Suspect getAnswer(int i){
+		return Answer[i];
+	}
+	
 }
