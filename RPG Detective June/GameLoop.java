@@ -155,6 +155,9 @@ public class GameLoop {
     				detective.setGender("Vrouw");
     				CharacterGenderFlag = false;
     			}
+    			else{
+    				clearScreen();
+    			}
     		}	
     		
 			clearScreen();
@@ -307,6 +310,9 @@ public class GameLoop {
     				detective.setIntelligence(0);
 					detective.setCharisma(0);
     			}
+    			else{
+    				clearScreen();
+    			}
     		}
 			
 			clearScreen();
@@ -457,13 +463,8 @@ public class GameLoop {
 	 		infoInterface();
     		System.out.println("\t1. " + arrQuestionGeneral[0].getText());
     		System.out.println("\t2. " + arrQuestionGeneral[1].getText());
-    		System.out.println("\t3. Uiterlijk bekijken");
+    		System.out.println("\t3. " + arrQuestionGeneral[2].getText());
     		switchQuestionAnswer4_1();
-    		switchQuestionAnswer5_1();
-    		switchQuestionAnswer6_1();
-    		switchQuestionAnswer7_1();
-    		switchQuestionAnswer8_1();
-    		switchExtraQuestionAnswer1_1();
     		System.out.println("\ta. Notebook & aanwijzingen");
     		System.out.println("\tx. Verder gaan");
     			
@@ -506,36 +507,6 @@ public class GameLoop {
         		switchQuestionAnswer4_3();
         		MaxQuestionsAmount.setmaxQuestions(MaxQuestionsAmount.getmaxQuestions() - 1); 
     		}
-    		else if(input.equals("5")){
-    			
-    			clearScreen();
-    			switchQuestionAnswer5_2();
-        		
-    		}
-    		else if(input.equals("6")){
-    			
-    			clearScreen();
-    			switchQuestionAnswer6_2();
-        		
-    		}
-    		else if(input.equals("7")){
-    			
-    			clearScreen();
-    			switchQuestionAnswer6_2();
-        		
-    		}
-    		else if(input.equals("8")){
-    			
-    			clearScreen();
-    			switchQuestionAnswer6_2();
-        		
-    		}
-    		else if(input.equals("9")){
-    			
-    			clearScreen();
-    			switchExtraQuestionAnswer1_2();
-        		
-    		}
     		else if(input.equals("a")){
     			
     			clearScreen();
@@ -549,7 +520,8 @@ public class GameLoop {
     		}
     		
     		else {
-    						
+    			clearScreen();		
+    			tryAgain();
     		}
     	}
   	}
@@ -558,63 +530,30 @@ public class GameLoop {
     	System.out.println("\n---------------------------------------------------");
 		System.out.println("\n\t# NOTEBOOK #\n");
 		System.out.println("---------------------------------------------------");
-		System.out.println("\n\tVerdachte nummer 1");
-		if(suspect[0].getNameKnown() == true){
-			System.out.println("\n\tNaam = " + suspect[0].getName());
-    		
-    	}
-	 
-    	else{
-			
-    		System.out.println("\n\tNaam = onbekend");
-    	}
-		if(suspect[0].getAgeKnown() == true){
-			System.out.println("\tLeeftijd = " + suspect[0].getAge());
-    		
-    	}
-	 
-    	else{
-			
-    		System.out.println("\tLeeftijd = onbekend");
-    	}
-		if(suspect[0].getAppearanceKnown() == true){
-			System.out.println("\tUiterlijk = " + suspect[0].getAppearance());
-    		
-    	}
-	 
-    	else{
-			
-    		System.out.println("\tUiterlijk = onbekend");
-    	}
 		
-		System.out.println("\n\tVerdachte nummer 2");
-		if(suspect[1].getNameKnown() == true){
-			System.out.println("\n\tNaam = " + suspect[1].getName());
-    		
-    	}
-	 
-    	else{
+		for (int i = 0; i<suspect.length; i++){
+			int x = i+1;
 			
-    		System.out.println("\n\tNaam = onbekend");
-    	}
-		if(suspect[1].getAgeKnown() == true){
-			System.out.println("\tLeeftijd = " + suspect[1].getAge());
-    		
-    	}
-	 
-    	else{
-			
-    		System.out.println("\tLeeftijd = onbekend");
-    	}
-		if(suspect[1].getAppearanceKnown() == true){
-			System.out.println("\tUiterlijk = " + suspect[1].getAppearance());
-    		
-    	}
-	 
-    	else{
-			
-    		System.out.println("\tUiterlijk = onbekend");
-    	}
+				System.out.println("\n\tVerdachte nummer "+ x);
+				if(suspect[i].getNameKnown() == true){
+					System.out.println("\n\tNaam = " + suspect[i].getName());
+		       	}
+			   	else{
+			   		System.out.println("\n\tNaam = onbekend");
+			  	}
+				if(suspect[i].getAgeKnown() == true){
+					System.out.println("\tLeeftijd = " + suspect[i].getAge());
+		    	}
+			   	else{
+					System.out.println("\tLeeftijd = onbekend");
+			   	}
+				if(suspect[i].getAppearanceKnown() == true){
+					System.out.println("\tUiterlijk = " + suspect[i].getAppearance());
+		    	}
+			  	else{
+					System.out.println("\tUiterlijk = onbekend");
+		    	}
+		}
 		
 		System.out.println("\n\tDruk op enter om verder te gaan.");
 		
@@ -629,296 +568,104 @@ public class GameLoop {
     }
     
     public void switchCheck() {
-    	
+       	
     	//check if choice and name are chosen
-    	if(suspectChoice == 1 && suspect[0].getNameKnown() == true){
-	 		
-    		personName.setpersonName(suspect[0].getName());
-    	}
-	 
-    	else if(suspectChoice == 2 && suspect[1].getNameKnown() == true){
-			
-    		personName.setpersonName(suspect[1].getName());
-    	}
-	 
-    	else if(suspectChoice == 3 && suspect[2].getNameKnown() == true){
-			
-    		personName.setpersonName(suspect[2].getName());
-    	}
-	 
-    	else if(suspectChoice == 4 && suspect[3].getNameKnown() == true){
-    		
-    		personName.setpersonName(suspect[3].getName());;
-    	}
-	 
-    	else if(suspectChoice == 5 && suspect[4].getNameKnown() == true){
-			
-    		personName.setpersonName(suspect[4].getName());
-    	}
-    	else{
-    		personName.setpersonName("onbekend");
-    	     
-    	}
-	 
+    	for (int i = 0; i<suspectChoice; i++){
+			if(suspectChoice == 1 + i && suspect[i].getNameKnown() == true){
+				personName.setpersonName(suspect[i].getName());
+			}
+      		else {
+       			personName.setpersonName("onbekend");
+       		}
+		}
     	//check if choice and age are chosen
-    	if(suspectChoice == 1 && suspect[0].getAgeKnown() == true){
- 		
-    		personAge.setpersonAge(suspect[0].getAge());
-    		
- 	 	}
-    	else if(suspectChoice == 2 && suspect[1].getAgeKnown() == true){
- 	
-    		personAge.setpersonAge(suspect[1].getAge());
- 	 	
-    	}
-    	else if(suspectChoice == 3 && suspect[2].getAgeKnown() == true){
-     	
-    		personAge.setpersonAge(suspect[2].getAge());
-          	
-    	}
-    	else if(suspectChoice == 4 && suspect[3].getAgeKnown() == true){
-     	
-    		personAge.setpersonAge(suspect[3].getAge());
-          
-    	}
-    	else if(suspectChoice == 5 && suspect[4].getAgeKnown() == true){
-     	
-    		personAge.setpersonAge(suspect[4].getAge());
-          
-    	}
-    	else{
-    		personAge.setpersonAge("onbekend");
-    	}
-    	
+    	for (int o = 0; o<suspectChoice; o++){
+			if(suspectChoice == 1 + o && suspect[o].getAgeKnown() == true){
+				personAge.setpersonAge(suspect[o].getAge());
+			}
+      		else {
+      			personAge.setpersonAge("onbekend");
+       		}
+		}
     	//check if choice and appearance are chosen
-    	if(suspectChoice == 1 && suspect[0].getAppearanceKnown() == true){
-    		
-    		personAppearance.setpersonAppearance(suspect[0].getAppearance());
-    	    		
-    	
-    	}
-    	else if(suspectChoice == 2 && suspect[1].getAppearanceKnown() == true){
-    	
-    		personAppearance.setpersonAppearance(suspect[1].getAppearance());
-    		
-    	
-    	}
-    	else if(suspectChoice == 3 && suspect[2].getAppearanceKnown() == true){
-        	
-    		personAppearance.setpersonAppearance(suspect[2].getAppearance());
-    		 
-        	
-        }
-    	else if(suspectChoice == 4 && suspect[3].getAppearanceKnown() == true){
-        	
-    		personAppearance.setpersonAppearance(suspect[3].getAppearance());
-    		
-        
-        }
-    	else if(suspectChoice == 5 && suspect[4].getAppearanceKnown() == true){
-        	
-    		personAppearance.setpersonAppearance(suspect[4].getAppearance());
-    	       
-        }
-    	else{
-    		personAppearance.setpersonAppearance("onbekend");
-    	}
-    	
+    	for (int j = 0; j<suspectChoice; j++){
+			if(suspectChoice == 1 + j && suspect[j].getAppearanceKnown() == true){
+				personAppearance.setpersonAppearance(suspect[j].getAppearance());
+			}
+      		else {
+      			personAppearance.setpersonAppearance("onbekend");
+       		}
+		}
     }
     
     public void switchName() {
     	
-    	if(suspectChoice == 1 && suspect[0].getNameKnown() == false){
-		
-    		personName.setpersonName(suspect[0].getName());
-    		suspect[0].setNameKnown(true);
-    		MaxQuestionsAmount.setmaxQuestions(MaxQuestionsAmount.getmaxQuestions() - 1); 
-    	
-    	}
-    	else if(suspectChoice == 2 && suspect[1].getNameKnown() == false){
-    	
-    		personName.setpersonName(suspect[1].getName());
-    		suspect[1].setNameKnown(true);
-    		MaxQuestionsAmount.setmaxQuestions(MaxQuestionsAmount.getmaxQuestions() - 1); 
-    		
-    	}
-    	else if(suspectChoice == 3 && suspect[2].getNameKnown() == false){
-        	
-    		personName.setpersonName(suspect[2].getName());
-        	suspect[2].setNameKnown(true);
-        	MaxQuestionsAmount.setmaxQuestions(MaxQuestionsAmount.getmaxQuestions() - 1); 
-        	
-        }
-    	else if(suspectChoice == 4 && suspect[3].getNameKnown() == false){
-        	
-    		personName.setpersonName(suspect[3].getName());
-        	suspect[3].setNameKnown(true);
-        	MaxQuestionsAmount.setmaxQuestions(MaxQuestionsAmount.getmaxQuestions() - 1); 
-        
-        }
-    	else if(suspectChoice == 5 && suspect[4].getNameKnown() == false){
-        	
-    		personName.setpersonName(suspect[4].getName());
-        	suspect[4].setNameKnown(true);
-        	MaxQuestionsAmount.setmaxQuestions(MaxQuestionsAmount.getmaxQuestions() - 1);
-        
-        }
-    	else{
-    		
-    	}
-    	        
+    	//Switches name to known
+    	for (int i = 0; i<suspectChoice; i++){
+			if(suspectChoice == 1 + i && suspect[i].getNameKnown() == false){
+				personName.setpersonName(suspect[i].getName());
+	    		suspect[i].setNameKnown(true);
+	    		MaxQuestionsAmount.setmaxQuestions(MaxQuestionsAmount.getmaxQuestions() - 1); 
+			}
+      		else {
+       			
+       		}
+		}
     }
     
     public void switchAge() {
     	
-    	if(suspectChoice == 1 && suspect[0].getAgeKnown() == false){
-    		
-    		personAge.setpersonAge(suspect[0].getAge());
-    		suspect[0].setAgeKnown(true);
-    		MaxQuestionsAmount.setmaxQuestions(MaxQuestionsAmount.getmaxQuestions() - 1); 
-    		
-    	}
-    	else if(suspectChoice == 2 && suspect[1].getAgeKnown() == false){
-    	
-    		personAge.setpersonAge(suspect[1].getAge());
-    		suspect[1].setAgeKnown(true);
-    		MaxQuestionsAmount.setmaxQuestions(MaxQuestionsAmount.getmaxQuestions() - 1); 
-    	
-    	}
-    	else if(suspectChoice == 3 && suspect[2].getAgeKnown() == false){
-        	
-    		personAge.setpersonAge(suspect[2].getAge());
-        	suspect[2].setAgeKnown(true);
-        	MaxQuestionsAmount.setmaxQuestions(MaxQuestionsAmount.getmaxQuestions() - 1); 
-        	
-        }
-    	else if(suspectChoice == 4 && suspect[3].getAgeKnown() == false){
-        	
-    		personAge.setpersonAge(suspect[3].getAge());
-        	suspect[3].setAgeKnown(true);
-        	MaxQuestionsAmount.setmaxQuestions(MaxQuestionsAmount.getmaxQuestions() - 1); 
-        
-        }
-    	else if(suspectChoice == 5 && suspect[4].getAgeKnown() == false){
-        	
-    		personAge.setpersonAge(suspect[4].getAge());
-        	suspect[4].setAgeKnown(true);
-        	MaxQuestionsAmount.setmaxQuestions(MaxQuestionsAmount.getmaxQuestions() - 1); 
-        
-        }
-    	else{
-    		
-    	}
+    	//Switches age to known
+    	for (int i = 0; i<suspectChoice; i++){
+			if(suspectChoice == 1 + i && suspect[i].getAgeKnown() == false){
+				personAge.setpersonAge(suspect[i].getAge());
+	    		suspect[i].setAgeKnown(true);
+	    		MaxQuestionsAmount.setmaxQuestions(MaxQuestionsAmount.getmaxQuestions() - 1); 
+			}
+      		else {
+       			
+       		}
+		}
     }
     
     public void switchAppearance() {
     	
-    	if(suspectChoice == 1 && suspect[0].getAppearanceKnown() == false){
-    		
-    		personAppearance.setpersonAppearance(suspect[0].getAppearance());
-    		suspect[0].setAppearanceKnown(true); 
-    		
-    	
-    	}
-    	else if(suspectChoice == 2 && suspect[1].getAppearanceKnown() == false){
-    	
-    		personAppearance.setpersonAppearance(suspect[1].getAppearance());
-    		suspect[1].setAppearanceKnown(true); 
-    		
-    	
-    	}
-    	else if(suspectChoice == 3 && suspect[2].getAppearanceKnown() == false){
-        	
-    		personAppearance.setpersonAppearance(suspect[2].getAppearance());
-    		suspect[2].setAppearanceKnown(true); 
-    		
-        	
-        }
-    	else if(suspectChoice == 4 && suspect[3].getAppearanceKnown() == false){
-        	
-    		personAppearance.setpersonAppearance(suspect[3].getAppearance());
-    		suspect[3].setAppearanceKnown(true); 
-    		 
-        
-        }
-    	else if(suspectChoice == 5 && suspect[4].getAppearanceKnown() == false){
-        	
-    		personAppearance.setpersonAppearance(suspect[4].getAppearance());
-    		suspect[4].setAppearanceKnown(true); 
-    	        
-        }
-    	else{
-    		
-    	}
-    	
+    	//Switches age to known
+    	for (int i = 0; i<suspectChoice; i++){
+			if(suspectChoice == 1 + i && suspect[i].getAppearanceKnown() == false){
+				personAppearance.setpersonAppearance(suspect[i].getAppearance());
+	    		suspect[i].setAppearanceKnown(true); 
+			}
+      		else {
+       			
+       		}
+		}
     }
   
-public void switchQuestionAnswer4_1() {
+    public void switchQuestionAnswer4_1() {
 	
-		if(suspectChoice == 1){
-			
-			System.out.println("\t4. " + arrQuestionSpecific[0].getText());
-			
-		}
-		else if(suspectChoice == 2){
-			
-			System.out.println("\t4. " + arrQuestionSpecific[1].getText());
-		
-		}
-		else if(suspectChoice == 3){
-			
-			System.out.println("\t4. " + arrQuestionSpecific[2].getText());
-		
-		}
-		else if(suspectChoice == 4 ){
-	   	
-			System.out.println("\t4. " + arrQuestionSpecific[3].getText());
-					
-		}
-		else if(suspectChoice == 5){
-			
-			System.out.println("\t4. " + arrQuestionSpecific[4].getText());
-		
-		}
-		else{
-		
-		}
+		for (int i = 0; i<suspectChoice; i++){
+			if(suspectChoice == 1 + i){
+				System.out.println("\t4. " + arrQuestionSpecific[i].getText());
+			}
+    		else {
+    	
+    		}
+    	}
 	}
-
+			
 	public void switchQuestionAnswer4_2() {
 		
-		if(suspectChoice == 1){
-		
-			System.out.println("\n---------------------------------------------------");
-	    	System.out.println("\n\t " + arrAnswerSpecific[0].getText());
-	    	System.out.println("\n---------------------------------------------------");
-			
-		}
-		else if(suspectChoice == 2){
-		
-			System.out.println("\n---------------------------------------------------");
-	    	System.out.println("\n\t " + arrAnswerSpecific[1].getText());
-	    	System.out.println("\n---------------------------------------------------");
-		}
-		else if(suspectChoice == 3){
-	    	
-			System.out.println("\n---------------------------------------------------");
-	    	System.out.println("\n\t " + arrAnswerSpecific[2].getText());
-	    	System.out.println("\n---------------------------------------------------");
-	    }
-		else if(suspectChoice == 4){
-	    	
-			System.out.println("\n---------------------------------------------------");
-	    	System.out.println("\n\t " + arrAnswerSpecific[3].getText());
-	    	System.out.println("\n---------------------------------------------------");
-	    }
-		else if(suspectChoice == 5){
-	    	
-			System.out.println("\n---------------------------------------------------");
-	    	System.out.println("\n\t " + arrAnswerSpecific[4].getText());
-	    	System.out.println("\n---------------------------------------------------");
-	    }
-		
+		for (int i = 0; i<suspectChoice; i++){
+			if(suspectChoice == 1 + i){
+				System.out.println("\n---------------------------------------------------");
+		    	System.out.println("\n\t " + arrAnswerSpecific[i].getText());
+		    	System.out.println("\n---------------------------------------------------");
+			}
+    		else {
+    	
+    		}
+    	}
 	}
 
 	public void switchQuestionAnswer4_3() {
@@ -971,278 +718,6 @@ public void switchQuestionAnswer4_1() {
 		}
 	
 	}
-
-	public void switchQuestionAnswer5_1() {
-		
-		if(suspectChoice == 1){
-			
-			System.out.println("\t5. " + arrQuestionSpecific[0].getText());
-			
-		}
-		else if(suspectChoice == 2){
-			
-			System.out.println("\t5. " + arrQuestionSpecific[1].getText());
-		
-		}
-		else if(suspectChoice == 3){
-			
-			System.out.println("\t5. " + arrQuestionSpecific[2].getText());
-		
-		}
-		else if(suspectChoice == 4 ){
-	   	
-			System.out.println("\t5. " + arrQuestionSpecific[3].getText());
-					
-		}
-		else if(suspectChoice == 5){
-			
-			System.out.println("\t5. " + arrQuestionSpecific[4].getText());
-		
-		}
-		else{
-		
-		}
-	}
-
-public void switchQuestionAnswer5_2() {
-		
-		if(suspectChoice == 1){
-		
-			System.out.println("\n---------------------------------------------------");
-	    	System.out.println("\n\t " + arrAnswerSpecific[0].getText());
-	    	System.out.println("\n---------------------------------------------------");
-			
-		}
-		else if(suspectChoice == 2){
-		
-			System.out.println("\n---------------------------------------------------");
-	    	System.out.println("\n\t " + arrAnswerSpecific[1].getText());
-	    	System.out.println("\n---------------------------------------------------");
-		}
-		else if(suspectChoice == 3){
-	    	
-			System.out.println("\n---------------------------------------------------");
-	    	System.out.println("\n\t " + arrAnswerSpecific[2].getText());
-	    	System.out.println("\n---------------------------------------------------");
-	    }
-		else if(suspectChoice == 4){
-	    	
-			System.out.println("\n---------------------------------------------------");
-	    	System.out.println("\n\t " + arrAnswerSpecific[3].getText());
-	    	System.out.println("\n---------------------------------------------------");
-	    }
-		else if(suspectChoice == 5){
-	    	
-			System.out.println("\n---------------------------------------------------");
-	    	System.out.println("\n\t " + arrAnswerSpecific[4].getText());
-	    	System.out.println("\n---------------------------------------------------");
-	    }
-		
-	}
-
-	public void switchQuestionAnswer6_1() {
-		
-		if(suspectChoice == 1){
-			
-			System.out.println("\t6. " + arrQuestionSpecific[0].getText());
-			
-		}
-		else if(suspectChoice == 2){
-			
-			System.out.println("\t6. " + arrQuestionSpecific[1].getText());
-		
-		}
-		else if(suspectChoice == 3){
-			
-			System.out.println("\t6. " + arrQuestionSpecific[2].getText());
-		
-		}
-		else if(suspectChoice == 4 ){
-	   	
-			System.out.println("\t6. " + arrQuestionSpecific[3].getText());
-					
-		}
-		else if(suspectChoice == 5){
-			
-			System.out.println("\t6. " + arrQuestionSpecific[4].getText());
-		
-		}
-		else{
-		
-		}
-	}
-	
-	public void switchQuestionAnswer6_2() {
-		
-		if(suspectChoice == 1){
-		
-			System.out.println("\n---------------------------------------------------");
-	    	System.out.println("\n\t " + arrAnswerSpecific[0].getText());
-	    	System.out.println("\n---------------------------------------------------");
-			
-		}
-		else if(suspectChoice == 2){
-		
-			System.out.println("\n---------------------------------------------------");
-	    	System.out.println("\n\t " + arrAnswerSpecific[1].getText());
-	    	System.out.println("\n---------------------------------------------------");
-		}
-		else if(suspectChoice == 3){
-	    	
-			System.out.println("\n---------------------------------------------------");
-	    	System.out.println("\n\t " + arrAnswerSpecific[2].getText());
-	    	System.out.println("\n---------------------------------------------------");
-	    }
-		else if(suspectChoice == 4){
-	    	
-			System.out.println("\n---------------------------------------------------");
-	    	System.out.println("\n\t " + arrAnswerSpecific[3].getText());
-	    	System.out.println("\n---------------------------------------------------");
-	    }
-		else if(suspectChoice == 5){
-	    	
-			System.out.println("\n---------------------------------------------------");
-	    	System.out.println("\n\t " + arrAnswerSpecific[4].getText());
-	    	System.out.println("\n---------------------------------------------------");
-	    }
-		
-	}
-	
-	public void switchQuestionAnswer7_1() {
-			
-			if(suspectChoice == 1){
-				
-				System.out.println("\t7. " + arrQuestionSpecific[0].getText());
-				
-			}
-			else if(suspectChoice == 2){
-				
-				System.out.println("\t7. " + arrQuestionSpecific[1].getText());
-			
-			}
-			else if(suspectChoice == 3){
-				
-				System.out.println("\t7. " + arrQuestionSpecific[2].getText());
-			
-			}
-			else if(suspectChoice == 4 ){
-		   	
-				System.out.println("\t7. " + arrQuestionSpecific[3].getText());
-						
-			}
-			else if(suspectChoice == 5){
-				
-				System.out.println("\t7. " + arrQuestionSpecific[4].getText());
-			
-			}
-			else{
-			
-			}
-		}
-	
-	public void switchQuestionAnswer7_2() {
-			
-			if(suspectChoice == 1){
-			
-				System.out.println("\n---------------------------------------------------");
-		    	System.out.println("\n\t " + arrAnswerSpecific[0].getText());
-		    	System.out.println("\n---------------------------------------------------");
-				
-			}
-			else if(suspectChoice == 2){
-			
-				System.out.println("\n---------------------------------------------------");
-		    	System.out.println("\n\t " + arrAnswerSpecific[1].getText());
-		    	System.out.println("\n---------------------------------------------------");
-			}
-			else if(suspectChoice == 3){
-		    	
-				System.out.println("\n---------------------------------------------------");
-		    	System.out.println("\n\t " + arrAnswerSpecific[2].getText());
-		    	System.out.println("\n---------------------------------------------------");
-		    }
-			else if(suspectChoice == 4){
-		    	
-				System.out.println("\n---------------------------------------------------");
-		    	System.out.println("\n\t " + arrAnswerSpecific[3].getText());
-		    	System.out.println("\n---------------------------------------------------");
-		    }
-			else if(suspectChoice == 5){
-		    	
-				System.out.println("\n---------------------------------------------------");
-		    	System.out.println("\n\t " + arrAnswerSpecific[4].getText());
-		    	System.out.println("\n---------------------------------------------------");
-		    }
-			
-		}
-	
-	public void switchQuestionAnswer8_1() {
-			
-			if(suspectChoice == 1){
-				
-				System.out.println("\t8. " + arrQuestionSpecific[0].getText());
-				
-			}
-			else if(suspectChoice == 2){
-				
-				System.out.println("\t8. " + arrQuestionSpecific[1].getText());
-			
-			}
-			else if(suspectChoice == 3){
-				
-				System.out.println("\t8. " + arrQuestionSpecific[2].getText());
-			
-			}
-			else if(suspectChoice == 4 ){
-		   	
-				System.out.println("\t8. " + arrQuestionSpecific[3].getText());
-						
-			}
-			else if(suspectChoice == 5){
-				
-				System.out.println("\t8. " + arrQuestionSpecific[4].getText());
-			
-			}
-			else{
-			
-			}
-		}
-	
-	public void switchQuestionAnswer8_2() {
-			
-			if(suspectChoice == 1){
-			
-				System.out.println("\n---------------------------------------------------");
-		    	System.out.println("\n\t " + arrAnswerSpecific[0].getText());
-		    	System.out.println("\n---------------------------------------------------");
-				
-			}
-			else if(suspectChoice == 2){
-			
-				System.out.println("\n---------------------------------------------------");
-		    	System.out.println("\n\t " + arrAnswerSpecific[1].getText());
-		    	System.out.println("\n---------------------------------------------------");
-			}
-			else if(suspectChoice == 3){
-		    	
-				System.out.println("\n---------------------------------------------------");
-		    	System.out.println("\n\t " + arrAnswerSpecific[2].getText());
-		    	System.out.println("\n---------------------------------------------------");
-		    }
-			else if(suspectChoice == 4){
-		    	
-				System.out.println("\n---------------------------------------------------");
-		    	System.out.println("\n\t " + arrAnswerSpecific[3].getText());
-		    	System.out.println("\n---------------------------------------------------");
-		    }
-			else if(suspectChoice == 5){
-		    	
-				System.out.println("\n---------------------------------------------------");
-		    	System.out.println("\n\t " + arrAnswerSpecific[4].getText());
-		    	System.out.println("\n---------------------------------------------------");
-		    }
-			
-		}
 
 	public void switchExtraQuestionAnswer1_1() {
 		
@@ -1321,7 +796,6 @@ public void switchQuestionAnswer5_2() {
 		System.out.println("\t" + personName.getpersonName() + " wil nog " + MaxQuestionsAmount.getmaxQuestions() + " vragen beantwoorden.");
 		System.out.println("\n\tLeeftijd = " + personAge.getpersonAge());
 		System.out.println("\tUiterlijk = " + personAppearance.getpersonAppearance());
-		//System.out.println("\n\taanwijzingen gevonden = " + Clue.aanwijzingen);
 		System.out.println("\tBeurten = " + turns);
 		System.out.println("\n\tWat wil je vragen of doen?");
        }  
@@ -1355,31 +829,27 @@ public void switchQuestionAnswer5_2() {
     		
         	try {
         		int input2 = in2.nextInt(); //zorgt voor input
-				for (int i = 0; i<input2; i++){
-	    			    	    				
+        		    			    	    				
+	    			suspectChoice = suspect[input2 - 1].getSuspectChoice();
+		    		clearScreen();
+		    		questions();
 	    			
-	    			if(input2 == 1 + i){
-		    			suspectChoice = suspect[i].getSuspectChoice();
-		    			
-		    			clearScreen();
-		    			questions();
-		    		    				
-		    		}
-	        	  				
-				
-	    			else {
-	    				clearScreen();
-	    				tryAgain();
-	    				mainChoice();
-	    			}
-	    			
-				}
         	}
+        	catch (ArrayIndexOutOfBoundsException e) {
+               
+                clearScreen();
+				System.out.println("\n---------------------------------------------------");
+				System.out.println("\n\tProbeer opnieuw.");
+				System.out.println("\tArray is out of Bounds "+e);
+				System.out.println("\n---------------------------------------------------");
+				System.out.println("\n");
+				mainChoice();
+             }
 			catch (InputMismatchException ex) {
 				clearScreen();
 				System.out.println("\n---------------------------------------------------");
 				System.out.println("\n\tProbeer opnieuw.");
-				System.out.println("\t" + in2.next() + " was niet een juiste invoer");
+				System.out.println("\t" + in2.next() + " was niet een juiste invoer "+ex);
 				System.out.println("\n---------------------------------------------------");
 				System.out.println("\n");
 				mainChoice();
