@@ -70,42 +70,42 @@ public class Suspect extends Person {
 		maxQuestions = maxquestions;
 	}
 	
-	private String personAppearance = "onbekend";
-	public String getpersonAppearance() {
-		return personAppearance;
+	private String suspectAppearance = "onbekend";
+	public String getsuspectAppearance() {
+		return suspectAppearance;
 	}
 
-	public void setpersonAppearance(String personappearance) {
-		personAppearance = personappearance;
+	public void setsuspectAppearance(String suspectappearance) {
+		suspectAppearance = suspectappearance;
 	}
 	
-	private String personName = "onbekend";
-	public String getpersonName() {
-		return personName;
+	private String suspectName = "onbekend";
+	public String getsuspectName() {
+		return suspectName;
 	}
 
-	public void setpersonName(String personname) {
-		personName = personname;
+	public void setsuspectName(String suspectname) {
+		suspectName = suspectname;
 	}
 	
-	private String personAge = "onbekend";
-	public String getpersonAge() {
-		return personAge;
+	private String suspectAge = "onbekend";
+	public String getsuspectAge() {
+		return suspectAge;
 	}
 
-	public void setpersonAge(String personage) {
-		personAge = personage;
+	public void setsuspectAge(String suspectage) {
+		suspectAge = suspectage;
 	}
 	
-	private Suspect Answer[];
-	public Suspect[] getAnswer() {
+	private rpgDetective.Answer[] Answer;
+	public rpgDetective.Answer[] getAnswer() {
 		return Answer;
 	}
 
-	public void setAnswer(Suspect[] Answer) {
+	public void setAnswer(Answer[] Answer) {
 		this.Answer = Answer;
 	}
-	public Suspect getAnswer(int i){
+	public rpgDetective.Answer getAnswer(int i){
 		return Answer[i];
 	}
 	

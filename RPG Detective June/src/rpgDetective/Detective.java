@@ -35,17 +35,32 @@ public class Detective extends Person {
 		this.charisma = charisma;
 	}
 	
-	private Detective Question[];
-	public Detective[] getQuestion() {
+	private rpgDetective.Question[] Question;
+	public rpgDetective.Question[] getQuestion() {
 		return Question;
 	}
 
-	public void setQuestion(Detective[] Question) {
+	public void setQuestion(Question[] Question) {
 		this.Question = Question;
 	}
-	public Detective getQuestion(int i){
+	public rpgDetective.Question getQuestion(int i){
 		return Question[i];
 	}
-	
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

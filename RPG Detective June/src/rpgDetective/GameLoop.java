@@ -5,14 +5,13 @@ import java.util.Scanner;
 
 public class GameLoop {
 	
-		//Creating run flags for while loops
+	//Creating run flags for while loops
     private boolean runFlag = false;
     private boolean winFlag = false;
     private boolean CharacterNameFlag = true;
 	private boolean CharacterGenderFlag = true;
 	private boolean GameTurn = true;
-	private boolean ExtraQuestions = true;
-	
+		
 	//Set amount of turns game has
     private int turns = 25;
     
@@ -28,9 +27,9 @@ public class GameLoop {
 	Scanner in2 = new Scanner (System.in);
 	
 	//Setting name, appearance and age for use in GameTurn loop
-	Suspect personName = new Suspect();
-	Suspect personAge = new Suspect();
-	Suspect personAppearance = new Suspect();
+	Suspect suspectName = new Suspect();
+	Suspect suspectAge = new Suspect();
+	Suspect suspectAppearance = new Suspect();
        
    	//Setting up switch
     int suspectChoice = 0;
@@ -46,22 +45,6 @@ public class GameLoop {
 	Suspect suspect3 = new Suspect();
 	Suspect suspect4 = new Suspect();
 	Suspect suspect5 = new Suspect();
-	
-	//Create new Answers ArraySuspectAnswers		
-	Suspect[] arrAnswerGeneral = new Suspect[2];
-	Suspect[] arrAnswerSpecific = new Suspect[6];
-	
-	
-	//Create new Questions ArrayDetectiveQuestions	
-	Detective[] arrQuestionGeneral = new Detective[3];
-	Detective[] arrQuestionSpecific = new Detective[5];
-	
-	
-	//Setting string up for extra questions and answers
-    String arrQuestion1 = "";
-    String arrAnswer1 = "";
-    String arrQuestion2 = "";
-    String arrAnswer2 = "";
 	
 	//for testing gameturns
 	int gameturn = 0;
@@ -120,45 +103,32 @@ public class GameLoop {
     public void createDetective() {
     	
     	//Questions are created detective general
-    	Detective questionG_1 = new Detective();
+    	Question questionG_1 = new Question();
     	questionG_1.setText("Wat is je naam?");
     			
-    	Detective questionG_2 = new Detective();
+    	Question questionG_2 = new Question();
     	questionG_2.setText("Wat is je Leeftijd?");
     	
-    	Detective questionG_3 = new Detective();
+    	Question questionG_3 = new Question();
     	questionG_3.setText("Uiterlijk bekijken van verdachte.");
     	
     	//Questions are created detective
-    	Detective question1_1 = new Detective();
+    	Question question1_1 = new Question();
     	question1_1.setText("Was je aanwezig in kamer 1 rond de tijd van de moord?");
     			
-    	Detective question1_2 = new Detective();
+    	Question question1_2 = new Question();
     	question1_2.setText("Was je aanwezig in kamer 2 rond de tijd van de moord?");
     	
-    	Detective question1_3 = new Detective();
-    	question1_3.setText("Was je aanwezig in kamer 3 rond de tijd van de moord?");
+    	Question question1_3 = new Question();
+    	question1_3.setText("Notebook bekijken");
     	
-    	Detective question1_4 = new Detective();
-    	question1_4.setText("Was je aanwezig in kamer 4 rond de tijd van de moord?");
+    	Question question1_4 = new Question();
+    	question1_4.setText("Terug");
     	
-    	Detective question1_5 = new Detective();
-    	question1_5.setText("Was je aanwezig in kamer 5 rond de tijd van de moord?");
     	
-    	/*ArrayDetectiveQuestions
-    	arrQuestionGeneral[0] = questionG_1;
-    	arrQuestionGeneral[1] = questionG_2;
-    	arrQuestionGeneral[2] = questionG_3;
-    	
-    	arrQuestionSpecific[0] = question1_1;
-    	arrQuestionSpecific[1] = question1_2;
-    	arrQuestionSpecific[2] = question1_3;
-    	arrQuestionSpecific[3] = question1_4;
-    	arrQuestionSpecific[4] = question1_5;
-    	*/
     	
     	//ArrayDetectiveQuestions
-       	Detective[] arrQuestions = new Detective[8];
+    	Question[] arrQuestions = new Question[7];
     	arrQuestions[0] = questionG_1;
     	arrQuestions[1] = questionG_2;
     	arrQuestions[2] = questionG_3;
@@ -166,7 +136,7 @@ public class GameLoop {
     	arrQuestions[4] = question1_2;
     	arrQuestions[5] = question1_3;
     	arrQuestions[6] = question1_4;
-    	arrQuestions[7] = question1_5;
+    	
     	
     	//Detective questions are being linked to detective
     	detective.setQuestion(arrQuestions);
@@ -375,75 +345,61 @@ public class GameLoop {
     }
     
     public void createSuspect() {
-    	/*
-    	Suspect suspect1Answer = suspect1.getAnswer(1);
-		System.out.println(suspect1Answer.getText());
-		suspect1.getAnswer(1);
-    	*/
-    	
-    	//Answers are created suspect general
-    	Suspect answerG_1 = new Suspect();
-    	answerG_1.setText("Ja");
-    			
-    	Suspect answerG_2 = new Suspect();
-    	answerG_2.setText("Nee");
-    	
-    	//Answers are created for suspects
-    	Suspect answer1_1 = new Suspect();
-    	answer1_1.setText("Ik heb niets gezien.");
-    			
-    	Suspect answer1_2 = new Suspect();
-    	answer1_2.setText("Ik zag dat diegene een baard had.");
-    	
-    	Suspect answer1_3 = new Suspect();
-    	answer1_3.setText("Ik dacht een zij.");
-    			
-    	Suspect answer1_4 = new Suspect();
-    	answer1_4.setText("Met Piet in de eetzaal.");
-    	
-    	Suspect answer1_5 = new Suspect();
-    	answer1_5.setText("Ja, ok hoorde een raar geluid rond middernacht.");
-    			
-    	Suspect answer1_6 = new Suspect();
-    	answer1_6.setText("Hij heeft lang haar");
-    	
-    	//ArraySuspectAnswers
-    	arrAnswerGeneral[0] = answerG_1;
-    	arrAnswerGeneral[1] = answerG_2;
-    	
-    	arrAnswerSpecific[0] = answer1_1;
-    	arrAnswerSpecific[1] = answer1_2;
-    	arrAnswerSpecific[2] = answer1_3;
-    	arrAnswerSpecific[3] = answer1_4;
-    	arrAnswerSpecific[4] = answer1_5;
-    	arrAnswerSpecific[5] = answer1_6;
-    	
+    	    	
     	//Suspect answers
-    	Suspect answers1 = new Suspect();
-    	answers1.setText("1");
+    	Answer answers1 = new Answer();
+    	answers1.setText("Mijn naam is ");
     			
-    	Suspect answers2 = new Suspect();
-    	answers2.setText("2");
+    	Answer answers2 = new Answer();
+    	answers2.setText("Mijn leeftijd is ");
+    	
+    	Answer answers3 = new Answer();
+    	answers3.setText("Dit persoon heeft ");
+    	
+    	Answer answers4 = new Answer();
+    	answers4.setText("test 1");
+    	
+    	Answer answers5 = new Answer();
+    	answers5.setText("test 2");
     				
-    	Suspect[] arrAnswers1 = new Suspect[2];
+    	Answer[] arrAnswers1 = new Answer[5];
     	arrAnswers1[0] = answers1;
     	arrAnswers1[1] = answers2;
+    	arrAnswers1[2] = answers3;
+    	arrAnswers1[3] = answers4;
+    	arrAnswers1[4] = answers5;
     				
-    	Suspect[] arrAnswers2 = new Suspect[2];
+    	Answer[] arrAnswers2 = new Answer[5];
     	arrAnswers2[0] = answers1;
     	arrAnswers2[1] = answers2;
+    	arrAnswers2[2] = answers3;
+    	arrAnswers2[3] = answers4;
+    	arrAnswers2[4] = answers5;
+    				
     			
-    	Suspect[] arrAnswers3 = new Suspect[2];
+    	Answer[] arrAnswers3 = new Answer[5];
     	arrAnswers3[0] = answers1;
     	arrAnswers3[1] = answers2;
+    	arrAnswers3[2] = answers3;
+    	arrAnswers3[3] = answers4;
+    	arrAnswers3[4] = answers5;
+    				
     	
-    	Suspect[] arrAnswers4 = new Suspect[2];
+    	Answer[] arrAnswers4 = new Answer[5];
     	arrAnswers4[0] = answers1;
     	arrAnswers4[1] = answers2;
+    	arrAnswers4[2] = answers3;
+    	arrAnswers4[3] = answers4;
+    	arrAnswers4[4] = answers5;
+    				
     	
-    	Suspect[] arrAnswers5 = new Suspect[2];
+    	Answer[] arrAnswers5 = new Answer[5];
     	arrAnswers5[0] = answers1;
     	arrAnswers5[1] = answers2;
+    	arrAnswers5[2] = answers3;
+    	arrAnswers5[3] = answers4;
+    	arrAnswers5[4] = answers5;
+    				
     	
     	//Suspects are being setup
     	suspect1.setName("Piet");
@@ -499,7 +455,7 @@ public class GameLoop {
     	
     }
     
-    public void questions() {
+    public void questionsAnswers() {
     	
     	MaxQuestionsAmount.setmaxQuestions(8);	// reset questions
 	 		 	
@@ -510,63 +466,9 @@ public class GameLoop {
     		
 	 		infoInterface();
 	 		questionList();
-    		System.out.println("\ta. Notebook & aanwijzingen");
-    		System.out.println("\tx. Verder gaan");
-    			
-    		String input = in.nextLine();
-    		
-    		if(input.equals("1")){
-    			switchName();
-    			clearScreen();
-    			System.out.println("\n---------------------------------------------------");
-        		System.out.println("\n\t Mijn naam is " + personName.getpersonName());
-        		System.out.println("\n---------------------------------------------------");
-        		
-    		}
-    		
-    		else if(input.equals("2")){
-    			switchAge();
-    			
-    			clearScreen();
-    			System.out.println("\n---------------------------------------------------");
-        		System.out.println("\n\t Mijn leeftijd is " + personAge.getpersonAge());
-        		System.out.println("\n---------------------------------------------------");
-        	}
-    		
-    		else if(input.equals("3")){
-    			switchAppearance();
-    			
-    			clearScreen();
-    			System.out.println("\n---------------------------------------------------");
-    			System.out.println("\n\tDit persoon heeft " + personAppearance.getpersonAppearance());
-        		System.out.println("\n---------------------------------------------------");
-    			
-    		}
-    		
-    		else if(input.equals("4")){
-    			
-    			clearScreen();
-    			switchQuestionAnswer4_1();
-        		switchQuestionAnswer4_2();
-        		MaxQuestionsAmount.setmaxQuestions(MaxQuestionsAmount.getmaxQuestions() - 1); 
-    		}
-    		else if(input.equals("a")){
-    			
-    			clearScreen();
-    			clues();
-    		}
-    		
-    		else if(input.equals("x")){
-    			
-    			clearScreen();
-    			MaxQuestionsAmount.setmaxQuestions(0);
-    		}
-    		
-    		else {
-    			clearScreen();		
-    			tryAgain();
-    		}
+    		AnswerList();
     	}
+    	
   	}
       							
     public void clues() {
@@ -617,28 +519,28 @@ public class GameLoop {
     	//check if choice and name are chosen
     	for (int i = 0; i<suspectChoice; i++){
 			if(suspectChoice == 1 + i && suspect[i].getNameKnown() == true){
-				personName.setpersonName(suspect[i].getName());
+				suspectName.setsuspectName(suspect[i].getName());
 			}
       		else {
-       			personName.setpersonName("onbekend");
+      			suspectName.setsuspectName("onbekend");
        		}
 		}
     	//check if choice and age are chosen
     	for (int o = 0; o<suspectChoice; o++){
 			if(suspectChoice == 1 + o && suspect[o].getAgeKnown() == true){
-				personAge.setpersonAge(suspect[o].getAge());
+				suspectAge.setsuspectAge(suspect[o].getAge());
 			}
       		else {
-      			personAge.setpersonAge("onbekend");
+      			suspectAge.setsuspectAge("onbekend");
        		}
 		}
     	//check if choice and appearance are chosen
     	for (int j = 0; j<suspectChoice; j++){
 			if(suspectChoice == 1 + j && suspect[j].getAppearanceKnown() == true){
-				personAppearance.setpersonAppearance(suspect[j].getAppearance());
+				suspectAppearance.setsuspectAppearance(suspect[j].getAppearance());
 			}
       		else {
-      			personAppearance.setpersonAppearance("onbekend");
+      			suspectAppearance.setsuspectAppearance("onbekend");
        		}
 		}
     }
@@ -648,7 +550,7 @@ public class GameLoop {
     	//Switches name to known
     	for (int i = 0; i<suspectChoice; i++){
 			if(suspectChoice == 1 + i && suspect[i].getNameKnown() == false){
-				personName.setpersonName(suspect[i].getName());
+				suspectName.setsuspectName(suspect[i].getName());
 	    		suspect[i].setNameKnown(true);
 	    		MaxQuestionsAmount.setmaxQuestions(MaxQuestionsAmount.getmaxQuestions() - 1); 
 			}
@@ -663,7 +565,7 @@ public class GameLoop {
     	//Switches age to known
     	for (int i = 0; i<suspectChoice; i++){
 			if(suspectChoice == 1 + i && suspect[i].getAgeKnown() == false){
-				personAge.setpersonAge(suspect[i].getAge());
+				suspectAge.setsuspectAge(suspect[i].getAge());
 	    		suspect[i].setAgeKnown(true);
 	    		MaxQuestionsAmount.setmaxQuestions(MaxQuestionsAmount.getmaxQuestions() - 1); 
 			}
@@ -678,7 +580,7 @@ public class GameLoop {
     	//Switches age to known
     	for (int i = 0; i<suspectChoice; i++){
 			if(suspectChoice == 1 + i && suspect[i].getAppearanceKnown() == false){
-				personAppearance.setpersonAppearance(suspect[i].getAppearance());
+				suspectAppearance.setsuspectAppearance(suspect[i].getAppearance());
 	    		suspect[i].setAppearanceKnown(true); 
 			}
       		else {
@@ -692,153 +594,102 @@ public class GameLoop {
     	for (int i = 0; i<detective.getQuestion().length; i++){
 			int x = i + 1;
 				    			
-			Detective detectiveQuestion = detective.getQuestion(i);
+			Question detectiveQuestion = detective.getQuestion(i);
 			System.out.println("\t" + x + ". " + detectiveQuestion.getText());
 		}
     }
 			
-	public void switchQuestionAnswer4_1() {
+	public void AnswerList() {
 		
-		for (int i = 0; i<suspectChoice; i++){
-			if(suspectChoice == 1 + i){
+		switchCheck();
+		
+			try {
+        		int input2 = in2.nextInt(); //zorgt voor input
+        		    			    	    				
+        		for (int i = 0; i<suspectChoice; i++){
+        			
+        			if (suspectChoice == 1 + i && input2 == 1) {
+        		    	switchName();
+        		    	Answer detectiveQuestion = suspect[i].getAnswer(input2 - 1);
+        				clearScreen();
+        				System.out.println("\n---------------------------------------------------");
+        		    	System.out.println("\n\t " + detectiveQuestion.getText() + suspectName.getsuspectName());
+        		    	System.out.println("\n---------------------------------------------------");
+        		    	
+                   	}
+        			else if (suspectChoice == 1 + i && input2 == 2) {
+        		    	switchAge();
+        		    	Answer detectiveQuestion = suspect[i].getAnswer(input2 - 1);
+        				clearScreen();
+        				System.out.println("\n---------------------------------------------------");
+        		    	System.out.println("\n\t " + detectiveQuestion.getText() + suspectAge.getsuspectAge());
+        		    	System.out.println("\n---------------------------------------------------");
+        		    	
+                   	}
+        			else if (suspectChoice == 1 + i && input2 == 3) {
+        		    	switchAppearance();	
+        		    	Answer detectiveQuestion = suspect[i].getAnswer(input2 - 1);
+        				clearScreen();
+        				System.out.println("\n---------------------------------------------------");
+        		    	System.out.println("\n\t " + detectiveQuestion.getText() + suspectAppearance.getsuspectAppearance());
+        		    	System.out.println("\n---------------------------------------------------");
+        		    	
+                   	}
+        			else if(input2 == detective.getQuestion().length - 1){
+            			
+            			clearScreen();
+            			clues();
+            		}
+            		
+            		else if(input2 == detective.getQuestion().length){
+            			
+            			clearScreen();
+            			MaxQuestionsAmount.setmaxQuestions(0);
+            		}
+            		else if(suspectChoice == 1 + i){
+        				
+        				Answer detectiveQuestion = suspect[i].getAnswer(input2 - 1);
+        				clearScreen();
+        				System.out.println("\n---------------------------------------------------");
+        		    	System.out.println("\n\t " + detectiveQuestion.getText());
+        		    	System.out.println("\n---------------------------------------------------");
+        		    }
+              		else {
+               			
+               		}
+        		}
+        	}
+        	
+        	catch (ArrayIndexOutOfBoundsException e) {
+               
+                clearScreen();
 				System.out.println("\n---------------------------------------------------");
-		    	System.out.println("\n\t " + arrAnswerSpecific[i].getText());
-		    	System.out.println("\n---------------------------------------------------");
+				System.out.println("\n\tProbeer opnieuw.");
+				System.out.println("\tArray is out of Bounds "+e);
+				System.out.println("\n---------------------------------------------------");
+				System.out.println("\n");
+				mainChoice();
+             }
+			catch (InputMismatchException ex) {
+				clearScreen();
+				System.out.println("\n---------------------------------------------------");
+				System.out.println("\n\tProbeer opnieuw.");
+				System.out.println("\t" + in2.next() + " was niet een juiste invoer "+ex);
+				System.out.println("\n---------------------------------------------------");
+				System.out.println("\n");
+				mainChoice();
 			}
-    		else {
-    	
-    		}
-    	}
 	}
-
-	public void switchQuestionAnswer4_2() {
 	
-		ExtraQuestions = true; //reset
-		
-		while (ExtraQuestions == true)	{
-		
-			if(suspectChoice == 1){
-				ExtraQuestions = false;
-				
-			}
-			
-			else if(suspectChoice == 2){
-				ExtraQuestions = false;
-			
-			}
-			
-			else if(suspectChoice == 3){
-				ExtraQuestions = false;
-			
-			}
-			
-			else if(suspectChoice == 4  && suspect[0].getNameKnown() == false){
-	    	
-				infoInterface();
-	    		System.out.println("\t1. Wie is " + suspect[0].getName() + "?");
-				
-				
-				String input = in.nextLine();		
-				if(input.equals("1")){
-					clearScreen();
-					System.out.println("\n---------------------------------------------------");
-					System.out.println("\n\t Dat is " + suspect[0].getName() + " (" + personName.getpersonName() + " wijst " + suspect[0].getName() + " aan)."); //moet nog get set aanmaken voor suspect (suspect[3].getName())
-					System.out.println("\n---------------------------------------------------");
-				
-					suspect[0].setDiningRoomKnown(true);
-					suspect[0].setNameKnown(true);
-					ExtraQuestions = false;
-				}
-			}
-			
-			else if(suspectChoice == 5){
-				ExtraQuestions = false;
-			
-			}
-			else{
-				ExtraQuestions = false;
-			}
-		}
-	
-	}
-
-	public void switchExtraQuestionAnswer1_1() {
-		
-		if(suspectChoice == 1 && suspect[0].getDiningRoomKnown() == true){
-			
-			System.out.println("\t9. Was je in de eetzaal rond de tijd van de moord?"); //Still have to add to array
-			
-		}
-		else if(suspectChoice == 2){
-			
-		
-		}
-		else if(suspectChoice == 3){
-			
-		
-		}
-		else if(suspectChoice == 4 ){
-	   	
-					
-		}
-		else if(suspectChoice == 5){
-			
-		
-		}
-		else{
-		
-		}
-	}
-
-	
-	
-	public void switchExtraQuestionAnswer1_2() {
-		
-		if(suspectChoice == 1 && suspect[0].getDiningRoomKnown() == true){
-			clearScreen();
-			System.out.println("\n---------------------------------------------------");
-			System.out.println("\n\t" + arrAnswerGeneral[0].getText() + " met "+ suspect[3].getName() + " (wijst naar " + suspect[3].getName() + ")." );
-			System.out.println("\n---------------------------------------------------");
-			suspect[3].setNameKnown(true);
-			MaxQuestionsAmount.setmaxQuestions(MaxQuestionsAmount.getmaxQuestions() - 1); 
-	
-			if(detective.getCharisma() > 40){
-				System.out.println("\n\t #CHARISMA# Je ziet dat hij de waarheid spreekt."  );
-			}
-			else{
-				
-			}
-			
-		}
-		else if(suspectChoice == 2){
-			
-		
-		}
-		else if(suspectChoice == 3){
-			
-		
-		}
-		else if(suspectChoice == 4){
-	    
-		}
-		else if(suspectChoice == 5){
-			
-		
-		}
-		else{
-		
-		}
-	}
-
 	public void infoInterface() {  
 		
 		System.out.println("\n---------------------------------------------------");
-		System.out.println("\n\t# " + personName.getpersonName() + " is aanwezig #\n");
+		System.out.println("\n\t# " + suspectName.getsuspectName() + " is aanwezig #\n");
 		System.out.println("---------------------------------------------------");
 		System.out.println("\n\t" + detective.getName() + " ( " + detective.getGender() + " )");
-		System.out.println("\t" + personName.getpersonName() + " wil nog " + MaxQuestionsAmount.getmaxQuestions() + " vragen beantwoorden.");
-		System.out.println("\n\tLeeftijd = " + personAge.getpersonAge());
-		System.out.println("\tUiterlijk = " + personAppearance.getpersonAppearance());
+		System.out.println("\t" + suspectName.getsuspectName() + " wil nog " + MaxQuestionsAmount.getmaxQuestions() + " vragen beantwoorden.");
+		System.out.println("\n\tLeeftijd = " + suspectAge.getsuspectAge());
+		System.out.println("\tUiterlijk = " + suspectAppearance.getsuspectAppearance());
 		System.out.println("\tBeurten = " + turns);
 		System.out.println("\n\tWat wil je vragen of doen?");
        }  
@@ -875,7 +726,7 @@ public class GameLoop {
         		    			    	    				
 	    			suspectChoice = suspect[input2 - 1].getSuspectChoice();
 		    		clearScreen();
-		    		questions();
+		    		questionsAnswers();
 	    			
         	}
         	catch (ArrayIndexOutOfBoundsException e) {
