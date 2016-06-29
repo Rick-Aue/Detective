@@ -2,7 +2,7 @@ package rpgDetective;
 
 public class Person {
 	
-	String Name = "onbekend";
+	private String Name = "onbekend";
 	public String getName() {
 		return Name;
 	}
@@ -11,7 +11,7 @@ public class Person {
 		Name = name;
 	}
 	
-	String age;
+	private String age;
 	public String getAge() {
 		return age;
 	}

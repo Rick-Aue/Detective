@@ -8,9 +8,9 @@ public class GameLoop {
 	//Creating run flags for while loops
     private boolean runFlag = false;
     private boolean winFlag = false;
-    private boolean CharacterNameFlag = true;
-	private boolean CharacterGenderFlag = true;
-	private boolean GameTurn = true;
+    private boolean detectiveNameFlag = true;
+	private boolean detectiveGenderFlag = true;
+	private boolean gameTurn = true;
 		
 	//Set amount of turns game has
     private int turns = 25;
@@ -20,19 +20,20 @@ public class GameLoop {
     //Random rand = new Random();
 	//int maxVragen = 8;
 	//int vragen = rand.nextInt(1 + maxVragen);
-    Suspect MaxQuestionsAmount = new Suspect();
+    Question MaxQuestionsAmount = new Question();
     
     //Create input
 	Scanner in = new Scanner (System.in);
 	Scanner in2 = new Scanner (System.in);
 	
 	//Setting name, appearance and age for use in GameTurn loop
-	Suspect suspectName = new Suspect();
-	Suspect suspectAge = new Suspect();
-	Suspect suspectAppearance = new Suspect();
+	Answer suspectName = new Answer();
+	Answer suspectAge = new Answer();
+	Answer suspectAppearance = new Answer();
        
    	//Setting up switch
     int suspectChoice = 0;
+    int roomChoice = 0;
     	
 	//Create new detective
 	Detective detective = new Detective();
@@ -45,6 +46,15 @@ public class GameLoop {
 	Suspect suspect3 = new Suspect();
 	Suspect suspect4 = new Suspect();
 	Suspect suspect5 = new Suspect();
+	
+	//Create new rooms
+	Room[] room = new Room[5];
+	
+	Room room1 = new Room();
+	Room room2 = new Room();
+	Room room3 = new Room();
+	Room room4 = new Room();
+	Room room5 = new Room();
 	
 	//for testing gameturns
 	int gameturn = 0;
@@ -73,6 +83,7 @@ public class GameLoop {
     	System.out.println("Initialize game!");
     	createDetective();
     	createSuspect();
+    	createRoom();
     	
 	}
     
@@ -114,16 +125,16 @@ public class GameLoop {
     	
     	//Questions are created detective
     	Question question1_1 = new Question();
-    	question1_1.setText("Was je aanwezig in kamer 1 rond de tijd van de moord?");
+    	question1_1.setText("Is dit test 1?");
     			
     	Question question1_2 = new Question();
-    	question1_2.setText("Was je aanwezig in kamer 2 rond de tijd van de moord?");
+    	question1_2.setText("Is dit test 2?");
     	
     	Question question1_3 = new Question();
-    	question1_3.setText("Notebook bekijken");
+    	question1_3.setText("Notebook bekijken"); //Must be at second last place in array
     	
     	Question question1_4 = new Question();
-    	question1_4.setText("Terug");
+    	question1_4.setText("Einde beurt"); //Must be at last place in array
     	
     	
     	
@@ -142,7 +153,7 @@ public class GameLoop {
     	detective.setQuestion(arrQuestions);
     	    	
     	//Detective is being setup
-    	while(CharacterNameFlag)
+    	while(detectiveNameFlag)
         {        	
 			System.out.println("\n---------------------------------------------------");
 			System.out.println("\n\t Wat is je naam?");
@@ -151,15 +162,15 @@ public class GameLoop {
 			
 			if (detective.getName().equals("")){
 				detective.setName("Naamloos");
-				CharacterNameFlag = false;
+				detectiveNameFlag = false;
 			}
 			else {
-				CharacterNameFlag = false;
+				detectiveNameFlag = false;
 			}	    	 				
     		
 			clearScreen();
 			
-			while(CharacterGenderFlag)
+			while(detectiveGenderFlag)
             {        
     			System.out.println("\n---------------------------------------------------");
     			System.out.println("\n\t" + detective.getName() + " wat is je geslacht?");
@@ -170,11 +181,11 @@ public class GameLoop {
     			String input = in.nextLine();
     			if(input.equals("1")){
     				detective.setGender("Man");
-    				CharacterGenderFlag = false;
+    				detectiveGenderFlag = false;
     			}
     			else if(input.equals("2")){
     				detective.setGender("Vrouw");
-    				CharacterGenderFlag = false;
+    				detectiveGenderFlag = false;
     			}
     			else{
     				clearScreen();
@@ -439,40 +450,185 @@ public class GameLoop {
     	suspect[4] = suspect5;
     }
     
+    public void createRoom() {
+    	
+    	room1.setName("Huiskamer");
+    	room1.setRoomChoice(1);
+    	
+    	room2.setName("Eetkamer");
+    	room2.setRoomChoice(2);
+    	
+    	room3.setName("Slaapkamer");
+    	room3.setRoomChoice(3);
+    	
+    	room4.setName("Badkamer");
+    	room4.setRoomChoice(4);
+    	
+    	room5.setName("Zolder");
+    	room5.setRoomChoice(5);
+    	
+    	room[0] = room1;
+    	room[1] = room2;
+    	room[2] = room3;
+    	room[3] = room4;
+    	room[4] = room5;
+    }
+    
     public void gameTurn() {	
     
     	//Reset while loop when it loops back through
-    	GameTurn = true;
+    	gameTurn = true;
     	
     	//While loop for one game turn on what to do
-    	while (GameTurn == true)	{
+    	while (gameTurn == true)	{
     		
-    		mainChoice();
+    		System.out.println("\n---------------------------------------------------");
+    		System.out.println("\n\t" + detective.getName() + " ( " + detective.getGender() + " )");
+    		System.out.println("\n\t" + "Power " + detective.getPower());
+    		System.out.println("\t" + "Intelligence " + detective.getIntelligence());
+    		System.out.println("\t" + "Charisma " + detective.getCharisma());
+    		System.out.println("\n\tBeurten = " + turns);
+    		System.out.println("\n\tWat wil je doen?");
+    		System.out.println("\t1. Verdachten ondervragen");
+    		System.out.println("\t2. Kamers doorzoeken");
+    		System.out.println("\t3. Aanwijzingen bekijken");
+    		    		
+    		String input = in.nextLine();
+    		if(input.equals("1")){
+    			
+    			clearScreen();
+    			suspectChoice();
+    		}
     		
-    		GameTurn = false;
+    		else if(input.equals("2")){
+    			
+    			clearScreen();
+    			roomChoice();
+    		}
+    		
+    		else if(input.equals("3")){
+    			
+    			clearScreen();
+    			clues();
+    			gameturn--;
+    			turns++;
+    		}
+    		
+    		else {
+    			clearScreen();
+    			tryAgain();
+    			gameTurn();
+    		}
+    		
+    		
+    		gameTurn = false;
     	}
     	
     	
     }
     
-    public void questionsAnswers() {
-    	
-    	MaxQuestionsAmount.setmaxQuestions(8);	// reset questions
-	 		 	
-	 	//check if attributes of suspect are known
-	 	switchCheck();
+    public void suspectChoice() {  
+		
+		System.out.println("\n---------------------------------------------------");
+		System.out.println("\n\t" + detective.getName() + " ( " + detective.getGender() + " )");
+		System.out.println("\n\t" + "Power " + detective.getPower());
+		System.out.println("\t" + "Intelligence " + detective.getIntelligence());
+		System.out.println("\t" + "Charisma " + detective.getCharisma());
+		System.out.println("\n\tBeurten = " + turns);
+		System.out.println("\n\tWie wil je ondervragen? ");
 	 	
-	 	while (MaxQuestionsAmount.getmaxQuestions() > 0)	{
-    		
-	 		infoInterface();
-	 		questionList();
-    		AnswerList();
-    	}
-    	
-  	}
-      							
-    public void clues() {
-    	System.out.println("\n---------------------------------------------------");
+		//Goes through suspect array and prints
+		for (int i = 0; i<suspect.length; i++){
+			int x = i + 1;
+				    			
+			if(suspect[i].getNameKnown() == false ){
+				System.out.println("\t" + x + ". " + "onbekend");
+			}
+			else {
+				System.out.println("\t" + x + ". " + suspect[i].getName());
+			}
+		}
+		
+		try {
+			int input2 = in2.nextInt(); //zorgt voor input
+			    			    	    				
+				suspectChoice = suspect[input2 - 1].getSuspectChoice();
+	    		clearScreen();
+	    		questionsAnswers();
+				
+		}
+		catch (ArrayIndexOutOfBoundsException e) {
+	       
+	        clearScreen();
+			System.out.println("\n---------------------------------------------------");
+			System.out.println("\n\tProbeer opnieuw.");
+			//System.out.println("\tArray is out of Bounds "+e);
+			System.out.println("\n---------------------------------------------------");
+			System.out.println("\n");
+			gameTurn();
+	     }
+		catch (InputMismatchException ex) {
+			clearScreen();
+			System.out.println("\n---------------------------------------------------");
+			System.out.println("\n\tProbeer opnieuw.");
+			System.out.println("\t" + in2.next() + " was niet een juiste invoer "+ex);
+			System.out.println("\n---------------------------------------------------");
+			System.out.println("\n");
+			gameTurn();
+		}
+		
+	 }
+
+	public void roomChoice() {  
+		
+		System.out.println("\n---------------------------------------------------");
+		System.out.println("\n\t" + detective.getName() + " ( " + detective.getGender() + " )");
+		System.out.println("\n\t" + "Power " + detective.getPower());
+		System.out.println("\t" + "Intelligence " + detective.getIntelligence());
+		System.out.println("\t" + "Charisma " + detective.getCharisma());
+		System.out.println("\n\tBeurten = " + turns);
+		System.out.println("\n\tWaar wil je zoeken? ");
+	 	
+		//Goes through suspect array and prints
+		for (int i = 0; i<room.length; i++){
+			int x = i + 1;
+				    			
+			System.out.println("\t" + x + ". " + room[i].getName());
+		}
+		
+		try {
+			int input2 = in2.nextInt(); //zorgt voor input
+			    			    	    				
+				roomChoice = room[input2 - 1].getRoomChoice();
+	    		clearScreen();
+	    		roomSearch();
+	    		
+				
+		}
+		catch (ArrayIndexOutOfBoundsException e) {
+	       
+	        clearScreen();
+			System.out.println("\n---------------------------------------------------");
+			System.out.println("\n\tProbeer opnieuw.");
+			//System.out.println("\tArray is out of Bounds "+e);
+			System.out.println("\n---------------------------------------------------");
+			System.out.println("\n");
+			gameTurn();
+	     }
+		catch (InputMismatchException ex) {
+			clearScreen();
+			System.out.println("\n---------------------------------------------------");
+			System.out.println("\n\tProbeer opnieuw.");
+			System.out.println("\t" + in2.next() + " was niet een juiste invoer "+ex);
+			System.out.println("\n---------------------------------------------------");
+			System.out.println("\n");
+			gameTurn();
+		}
+		
+	 }
+
+	public void clues() {
+		System.out.println("\n---------------------------------------------------");
 		System.out.println("\n\t# NOTEBOOK #\n");
 		System.out.println("---------------------------------------------------");
 		
@@ -512,9 +668,41 @@ public class GameLoop {
 			clearScreen();
 			clues();
 		}
-    }
+	}
+
+	public void questionsAnswers() {
+    	
+    	MaxQuestionsAmount.setmaxQuestions(8);	// reset questions
+	 		 	
+	 	//check if attributes of suspect are known
+	 	switchSuspectCheck();
+	 	
+	 	while (MaxQuestionsAmount.getmaxQuestions() > 0)	{
+    		
+	 		infoInterfaceSuspect();
+	 		questionList();
+    		AnswerList();
+    	}
+    	
+  	}
+      	
+    public void roomSearch() {
+    	
+    	MaxQuestionsAmount.setmaxQuestions(8);	// reset questions
+	 		 	
+	 	//check if attributes of suspect are known
+    	switchSuspectCheck();
+	 	
+	 	while (MaxQuestionsAmount.getmaxQuestions() > 0)	{
+    		
+	 		infoInterfaceRoom();
+	 		questionList();
+    		AnswerList();
+    	}
+    	
+  	}
     
-    public void switchCheck() {
+    public void switchSuspectCheck() {
        	
     	//check if choice and name are chosen
     	for (int i = 0; i<suspectChoice; i++){
@@ -601,7 +789,7 @@ public class GameLoop {
 			
 	public void AnswerList() {
 		
-		switchCheck();
+		switchSuspectCheck();
 		
 			try {
         		int input2 = in2.nextInt(); //zorgt voor input
@@ -648,11 +836,12 @@ public class GameLoop {
             		}
             		else if(suspectChoice == 1 + i){
         				
-        				Answer detectiveQuestion = suspect[i].getAnswer(input2 - 1);
+        				Answer suspectAnswer = suspect[i].getAnswer(input2 - 1);
         				clearScreen();
         				System.out.println("\n---------------------------------------------------");
-        		    	System.out.println("\n\t " + detectiveQuestion.getText());
+        		    	System.out.println("\n\t " + suspectAnswer.getText());
         		    	System.out.println("\n---------------------------------------------------");
+        		    	MaxQuestionsAmount.setmaxQuestions(MaxQuestionsAmount.getmaxQuestions() - 1);
         		    }
               		else {
                			
@@ -665,10 +854,10 @@ public class GameLoop {
                 clearScreen();
 				System.out.println("\n---------------------------------------------------");
 				System.out.println("\n\tProbeer opnieuw.");
-				System.out.println("\tArray is out of Bounds "+e);
+				//System.out.println("\tArray is out of Bounds "+e); //for debugger
 				System.out.println("\n---------------------------------------------------");
 				System.out.println("\n");
-				mainChoice();
+				gameTurn();
              }
 			catch (InputMismatchException ex) {
 				clearScreen();
@@ -677,11 +866,11 @@ public class GameLoop {
 				System.out.println("\t" + in2.next() + " was niet een juiste invoer "+ex);
 				System.out.println("\n---------------------------------------------------");
 				System.out.println("\n");
-				mainChoice();
+				gameTurn();
 			}
 	}
 	
-	public void infoInterface() {  
+	public void infoInterfaceSuspect() {  
 		
 		System.out.println("\n---------------------------------------------------");
 		System.out.println("\n\t# " + suspectName.getsuspectName() + " is aanwezig #\n");
@@ -693,6 +882,22 @@ public class GameLoop {
 		System.out.println("\tBeurten = " + turns);
 		System.out.println("\n\tWat wil je vragen of doen?");
        }  
+	
+	public void infoInterfaceRoom() {  
+		
+		for (int i = 0; i<roomChoice; i++){
+			if(roomChoice == 1 + i){
+				System.out.println("\n---------------------------------------------------");
+				System.out.println("\n\t# Je bent in de " + room[i].getName() + " #\n");
+				System.out.println("---------------------------------------------------");
+				System.out.println("\n\t" + detective.getName() + " ( " + detective.getGender() + " )");
+				System.out.println("\tJe kan nog " + MaxQuestionsAmount.getmaxQuestions() + " keer zoeken.");
+				System.out.println("\n\tKamer naam = " + room[i].getName());
+				System.out.println("\tBeurten = " + turns);
+				System.out.println("\n\tWat wil je doen?");
+			}
+       }  
+	}
     
 	public static void tryAgain() {  
 		System.out.println("\n---------------------------------------------------");
@@ -700,94 +905,6 @@ public class GameLoop {
 		System.out.println("\n---------------------------------------------------");
 		System.out.println("\n");
        }  
-	
-	public void mainChoice() {  
-		
-		System.out.println("\n---------------------------------------------------");
-		System.out.println("\n\t" + detective.getName() + " ( " + detective.getGender() + " )");
-		System.out.println("\n\t" + "Power " + detective.getPower());
-		System.out.println("\t" + "Intelligence " + detective.getIntelligence());
-		System.out.println("\t" + "Charisma " + detective.getCharisma());
-		System.out.println("\n\tBeurten = " + turns);
-		System.out.println("\n\tWat wil je doen?");
-		System.out.println("\t1. Verdachten ondervragen");
-		System.out.println("\t2. Aanwijzingen bekijken");
-		    		
-		String input = in.nextLine();
-		if(input.equals("1")){
-			
-			clearScreen();
-			
-			suspectList();
-			
-    		
-        	try {
-        		int input2 = in2.nextInt(); //zorgt voor input
-        		    			    	    				
-	    			suspectChoice = suspect[input2 - 1].getSuspectChoice();
-		    		clearScreen();
-		    		questionsAnswers();
-	    			
-        	}
-        	catch (ArrayIndexOutOfBoundsException e) {
-               
-                clearScreen();
-				System.out.println("\n---------------------------------------------------");
-				System.out.println("\n\tProbeer opnieuw.");
-				System.out.println("\tArray is out of Bounds "+e);
-				System.out.println("\n---------------------------------------------------");
-				System.out.println("\n");
-				mainChoice();
-             }
-			catch (InputMismatchException ex) {
-				clearScreen();
-				System.out.println("\n---------------------------------------------------");
-				System.out.println("\n\tProbeer opnieuw.");
-				System.out.println("\t" + in2.next() + " was niet een juiste invoer "+ex);
-				System.out.println("\n---------------------------------------------------");
-				System.out.println("\n");
-				mainChoice();
-			}
-		}
-		
-		else if(input.equals("2")){
-			
-			clearScreen();
-			clues();
-			gameturn--;
-			turns++;
-		}
-		
-		else {
-			clearScreen();
-			tryAgain();
-			mainChoice();
-		}
-		
-	}
-	
-	public void suspectList() {  
-		
-		System.out.println("\n---------------------------------------------------");
-		System.out.println("\n\t" + detective.getName() + " ( " + detective.getGender() + " )");
-		System.out.println("\n\t" + "Power " + detective.getPower());
-		System.out.println("\t" + "Intelligence " + detective.getIntelligence());
-		System.out.println("\t" + "Charisma " + detective.getCharisma());
-		System.out.println("\n\tBeurten = " + turns);
-		System.out.println("\n\tWie wil je ondervragen? ");
-	 	
-		//Goes through suspect array and prints
-    	for (int i = 0; i<suspect.length; i++){
-			int x = i + 1;
-				    			
-			if(suspect[i].getNameKnown() == false ){
-    			System.out.println("\t" + x + ". " + "onbekend");
-    		}
-    		else {
-    			System.out.println("\t" + x + ". " + suspect[i].getName());
-    		}
-		}
-     }  
 	
 	public static void clearScreen() {  
     	for (int i = 0; i < 50; ++i) System.out.println(); //Temporary// console clear

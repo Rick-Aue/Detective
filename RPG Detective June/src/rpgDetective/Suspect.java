@@ -44,15 +44,6 @@ public class Suspect extends Person {
 		AgeKnown = ageknown;
 	}
 	
-	private boolean DiningRoomKnown = false;
-	public boolean getDiningRoomKnown() {
-		return DiningRoomKnown;
-	}
-
-	public void setDiningRoomKnown(boolean diningroomknown) {
-		DiningRoomKnown = diningroomknown;
-	}
-	
 	private int SuspectChoice;
 	public int getSuspectChoice() {
 		return SuspectChoice;
@@ -60,41 +51,6 @@ public class Suspect extends Person {
 
 	public void setSuspectChoice(int suspectchoice) {
 		SuspectChoice = suspectchoice;
-	}
-	
-	private int maxQuestions;
-	public int getmaxQuestions() {
-		return maxQuestions;
-	}
-	public void setmaxQuestions(int maxquestions) {
-		maxQuestions = maxquestions;
-	}
-	
-	private String suspectAppearance = "onbekend";
-	public String getsuspectAppearance() {
-		return suspectAppearance;
-	}
-
-	public void setsuspectAppearance(String suspectappearance) {
-		suspectAppearance = suspectappearance;
-	}
-	
-	private String suspectName = "onbekend";
-	public String getsuspectName() {
-		return suspectName;
-	}
-
-	public void setsuspectName(String suspectname) {
-		suspectName = suspectname;
-	}
-	
-	private String suspectAge = "onbekend";
-	public String getsuspectAge() {
-		return suspectAge;
-	}
-
-	public void setsuspectAge(String suspectage) {
-		suspectAge = suspectage;
 	}
 	
 	private rpgDetective.Answer[] Answer;

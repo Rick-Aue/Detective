@@ -22,4 +22,12 @@ public class Question {
 	public void setText(String text) {
 		this.text = text;
 	}
+	
+	private int maxQuestions;
+	public int getmaxQuestions() {
+		return maxQuestions;
+	}
+	public void setmaxQuestions(int maxquestions) {
+		maxQuestions = maxquestions;
+	}
 }
